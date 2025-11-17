@@ -112,7 +112,7 @@ public class App {
     	Produto produto;
     	
     	cabecalho();
-    	System.out.println("Localizando um produto...");
+    	System.out.println("localizando");
     	
     	try {
     		produto = produtosCadastrados.pesquisar(procurado);
@@ -120,8 +120,8 @@ public class App {
     		produto = null;
     	}
     	
-    	System.out.println("Número de comparações realizadas: " + produtosCadastrados.getComparacoes());
-    	System.out.println("Tempo de processamento da pesquisa: " + produtosCadastrados.getTempo() + " ms");
+    	System.out.println("numero de comparações" + produtosCadastrados.getComparacoes());
+    	System.out.println("tempo de processamento" + produtosCadastrados.getTempo() + " ms");
         
     	return produto;
     	
@@ -132,19 +132,19 @@ public class App {
     static Produto localizarProdutoID(ABB<Integer, Produto> produtosCadastrados) {
 
         if (produtosCadastrados == null || produtosCadastrados.vazia()) {
-            System.out.println("Nenhum produto carregado!");
+            System.out.println("nada carregado");
             return null;
         }
     
         cabecalho();
-        System.out.print("Digite o ID do produto: ");
+        System.out.print("digite o id do produto ");
     
         int id = Integer.parseInt(teclado.nextLine());
     
         try {
             return produtosCadastrados.pesquisar(id);
         } catch (NoSuchElementException e) {
-            System.out.println("Produto não encontrado!");
+            System.out.println("não encontrado");
             return null;
         }
     }

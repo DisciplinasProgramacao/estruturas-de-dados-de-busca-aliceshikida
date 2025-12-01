@@ -11,8 +11,7 @@ public abstract class Produto implements Comparable<Produto>{
 	protected String descricao;
 	protected double precoCusto;
 	protected double margemLucro;
-
-
+	
 	/**
      * Inicializador privado. Os valores default, em caso de erro, são:
      * "Produto sem descrição", R$ 0.00, 0.0  
@@ -153,4 +152,3 @@ public abstract class Produto implements Comparable<Produto>{
      */
     public abstract String gerarDadosTexto();
 }
-

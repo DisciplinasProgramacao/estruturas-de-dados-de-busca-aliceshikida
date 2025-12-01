@@ -50,10 +50,11 @@ public class ABB<K, V> implements IMapeamento<K, V>{
      * @param original a árvore binária de busca original.
      * @param funcaoChave a função que irá extrair a nova chave de cada item para a nova árvore.
      */
-    public ABB(ABB<?, V> original, Function<V, K> funcaoChave) {
+    public ABB(ABB<?, V> original, Function<V, K> funcaoChave, Comparator<K> comparador) {
         ABB<K, V> nova = new ABB<>();
         nova = copiarArvore(original.raiz, funcaoChave, nova);
         this.raiz = nova.raiz;
+        this.comparador = comparador;
     }
     
     /**
@@ -312,39 +313,6 @@ public class ABB<K, V> implements IMapeamento<K, V>{
             raizArvore = raizArvore.getEsquerda();
         }
         return raizArvore;
-    }
-
-    public Lista<V> recortar(K chaveInicio, K chaveFinal) {
-        Lista<V> listaFiltrada = new Lista<V>();
-        recortar(this.raiz, chaveInicio, chaveFinal, listaFiltrada);
-        return listaFiltrada;
-    }
-
-    /**
-     * Método auxiliar recursivo otimizado.
-     */
-    private void recortar(No<K, V> raizArvore, K inicio, K fim, Lista<V> lista) {
-        if (raizArvore != null) {
-
-
-            int cmpInicio = comparador.compare(raizArvore.getChave(), inicio);
-            int cmpFim = comparador.compare(raizArvore.getChave(), fim);
-
-
-            if (cmpInicio > 0) {
-                recortar(raizArvore.getEsquerda(), inicio, fim, lista);
-            }
-
-
-            if (cmpInicio >= 0 && cmpFim <= 0) {
-                lista.inserir(raizArvore.getItem());
-            }
-
-
-            if (cmpFim < 0) {
-                recortar(raizArvore.getDireita(), inicio, fim, lista);
-            }
-        }
     }
 
 	@Override
